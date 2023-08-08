@@ -7,20 +7,21 @@ import ButtonBasic from "./components/ButtonBasic";
 import ProgressBasic from "./components/Loading";
 import CheckboxBasic from "./components/CheckboxBasic";
 import RadioButton from "./components/RadioButton";
+import CommonModal from "./components/CommonModal";
+import Notify from "./components/Notify";
 
 const App = () => {
   const [input, setInput] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
-
-  const clickHandler=()=>{
-    alert('iam clicked');
-  }
+  const clickHandler = () => {
+    alert("iam clicked");
+  };
 
   const changeHandler = (e) => {
     console.log(e.target.value);
     //for switch basic and text area
-    setInput(!input);
+    // setInput(!input);
     //for react-select
     // if (e)
     //   setInput({
@@ -34,7 +35,9 @@ const App = () => {
     //   });
     // console.log(e);
     //for input basic
-    // setInput(e.target.value);
+    setInput(e.target.value);
+    if (e.target.value.length > 0) setErrorMessage("");
+    else setErrorMessage("input Should not be empty");
   };
   const blurHandler = (e) => {
     //console.log(input);
@@ -43,9 +46,9 @@ const App = () => {
     // else setErrorMessage("");
     // console.log(errorMessage);
     // for input basic
-    // const { value } = e.target;
-    // if (value === "") setErrorMessage("input Should not be empty");
-    // else setErrorMessage("");
+    const { value } = e.target;
+    if (value === "") setErrorMessage("input Should not be empty");
+    else setErrorMessage("");
   };
 
   const colourOptions = [
@@ -73,10 +76,17 @@ const App = () => {
       />
       <SwitchBasic changeHandler={changeHandler} value={input} />
       <TextArea changeHandler={changeHandler} value={input} />
-      <ButtonBasic clickHandler={clickHandler}/>
-      <ProgressBasic/>
-      <CheckboxBasic changeHandler={changeHandler} value={input}/>
-      <RadioButton/>
+      <ButtonBasic clickHandler={clickHandler} />
+      <ProgressBasic />
+      <CheckboxBasic changeHandler={changeHandler} value={input} />
+      <RadioButton />
+      <CommonModal
+        changeHandler={changeHandler}
+        errorMessage={errorMessage}
+        blurHandler={blurHandler}
+        value={input}
+      />
+      <Notify/>
     </>
   );
 };

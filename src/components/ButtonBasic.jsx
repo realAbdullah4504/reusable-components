@@ -3,7 +3,7 @@ import { Button } from "reactstrap";
 const ButtonBasic = ({
     text = 'text',
     color = 'primary',
-    size = 'md',
+    size = '',
     clickHandler,
     disabled=false
 }) => {
