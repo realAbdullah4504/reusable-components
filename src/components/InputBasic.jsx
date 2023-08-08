@@ -1,4 +1,4 @@
-import { Form, Input, Label, FormFeedback, FormGroup } from "reactstrap";
+import {Input, Label, FormFeedback} from "reactstrap";
 
 
 const InputBasic = ({
@@ -21,7 +21,6 @@ const InputBasic = ({
             <Label className='form-label' for={id}>
                 {label}
             </Label>
-            <h1>{value}</h1>
             <Input
                 className={className}
                 type={type}
@@ -35,9 +34,7 @@ const InputBasic = ({
                 placeholder={placeholder}
                 invalid={errorMessage ? true : false}
             />
-            <FormFeedback>
-                {errorMessage}
-            </FormFeedback>
+            {errorMessage && <span className="text-danger">{errorMessage}</span>}
         </div>
     )
 }
