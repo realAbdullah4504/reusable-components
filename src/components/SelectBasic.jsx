@@ -6,7 +6,7 @@ const SelectBasic = ({
     colourOptions = '',
     id='',
     value = { value: '', label: '' },
-    name = '',
+    name = 'sdas',
     changeHandler,
     blurHandler,
     errorMessage,
@@ -23,12 +23,13 @@ const SelectBasic = ({
                 options={colourOptions}
                 isLoading={isLoading}
                 name={name}
-                value={value}
+                // value={value}
                 onChange={changeHandler}
                 onBlur={blurHandler}
                 isClearable={isClearable}
                 isDisabled={isDisabled}
                 isinvalid={true}
+                placeholder='Bruce'
             />
             {errorMessage && <span className="text-danger">Please select an option.</span>}
         </>

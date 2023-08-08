@@ -4,11 +4,11 @@ import {Input, Label, FormFeedback} from "reactstrap";
 const InputBasic = ({
     className = 'form-control',
     type = 'text',
-    name = '',
+    name = 'name',
     id = 'basicInput',
     disabled = false,
     value = '',
-    label = '',
+    label = 'name',
     changeHandler,
     blurHandler,
     errorMessage = '',
