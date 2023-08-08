@@ -4,6 +4,7 @@ import InputBasic from "./components/InputBasic";
 import SelectBasic from "./components/SelectBasic";
 import SwitchBasic from "./components/SwitchBasic";
 import ButtonBasic from "./components/ButtonBasic";
+import ProgressBasic from "./components/Loading";
 
 const App = () => {
   const [input, setInput] = useState();
@@ -71,6 +72,7 @@ const App = () => {
       <SwitchBasic changeHandler={changeHandler} value={input} />
       <TextArea changeHandler={changeHandler} value={input} />
       <ButtonBasic clickHandler={clickHandler}/>
+      <ProgressBasic/>
     </>
   );
 };
