@@ -5,6 +5,8 @@ import SelectBasic from "./components/SelectBasic";
 import SwitchBasic from "./components/SwitchBasic";
 import ButtonBasic from "./components/ButtonBasic";
 import ProgressBasic from "./components/Loading";
+import CheckboxBasic from "./components/CheckboxBasic";
+import RadioButton from "./components/RadioButton";
 
 const App = () => {
   const [input, setInput] = useState();
@@ -16,9 +18,9 @@ const App = () => {
   }
 
   const changeHandler = (e) => {
-    //console.log(e.target.value);
+    console.log(e.target.value);
     //for switch basic and text area
-    //setInput(e.target.value);
+    setInput(!input);
     //for react-select
     // if (e)
     //   setInput({
@@ -73,6 +75,8 @@ const App = () => {
       <TextArea changeHandler={changeHandler} value={input} />
       <ButtonBasic clickHandler={clickHandler}/>
       <ProgressBasic/>
+      <CheckboxBasic changeHandler={changeHandler} value={input}/>
+      <RadioButton/>
     </>
   );
 };
