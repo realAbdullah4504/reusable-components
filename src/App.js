@@ -1,18 +1,23 @@
 import { useState } from "react";
-import TextArea from "./components/textArea";
+import TextArea from "./components/TextArea";
 import InputBasic from "./components/InputBasic";
 import SelectBasic from "./components/SelectBasic";
-import SwitchBasic from "./components/switchBasic";
+import SwitchBasic from "./components/SwitchBasic";
+import ButtonBasic from "./components/ButtonBasic";
 
 const App = () => {
   const [input, setInput] = useState();
   const [errorMessage, setErrorMessage] = useState();
+
+
+  const clickHandler=()=>{
+    alert('iam clicked');
+  }
+
   const changeHandler = (e) => {
     //console.log(e.target.value);
-
     //for switch basic and text area
-     //setInput(e.target.value);
-
+    //setInput(e.target.value);
     //for react-select
     // if (e)
     //   setInput({
@@ -25,7 +30,6 @@ const App = () => {
     //     label: "",
     //   });
     // console.log(e);
-
     //for input basic
     // setInput(e.target.value);
   };
@@ -57,15 +61,16 @@ const App = () => {
         blurHandler={blurHandler}
         value={input}
       />
-      {/* <SelectBasic
+      <SelectBasic
         colourOptions={colourOptions}
         changeHandler={changeHandler}
         blurHandler={blurHandler}
         errorMessage={errorMessage}
         value={input}
-      /> */}
-      {/* <SwitchBasic changeHandler={changeHandler} value={input}/> */}
-      <TextArea changeHandler={changeHandler} value={input}/>
+      />
+      <SwitchBasic changeHandler={changeHandler} value={input} />
+      <TextArea changeHandler={changeHandler} value={input} />
+      <ButtonBasic clickHandler={clickHandler}/>
     </>
   );
 };
