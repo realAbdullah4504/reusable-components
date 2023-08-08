@@ -9,35 +9,25 @@ import CheckboxBasic from "./components/CheckboxBasic";
 import RadioButton from "./components/RadioButton";
 import CommonModal from "./components/CommonModal";
 import Notify from "./components/Notify";
+import TooltipBasic from "./components/TooltipBasic";
 
+const initialState = {
+  name: "",
+  city: {},
+  switch: false,
+};
 const App = () => {
-  const [input, setInput] = useState();
+  const [state, setState] = useState(initialState);
   const [errorMessage, setErrorMessage] = useState();
 
   const clickHandler = () => {
     alert("iam clicked");
   };
 
-  const changeHandler = (e) => {
-    console.log(e.target.value);
-    //for switch basic and text area
-    // setInput(!input);
-    //for react-select
-    // if (e)
-    //   setInput({
-    //     value: e.value,
-    //     label: e.label,
-    //   });
-    // else
-    //   setInput({
-    //     value: "",
-    //     label: "",
-    //   });
-    // console.log(e);
-    //for input basic
-    setInput(e.target.value);
-    if (e.target.value.length > 0) setErrorMessage("");
-    else setErrorMessage("input Should not be empty");
+  const changeHandler = (name) => (e) => {
+    const value = name==='switch' ?  e?.target?.checked : (e?.target?.value || e);
+    setState({ ...state, [name]: value });
+    console.log(name, state);
   };
   const blurHandler = (e) => {
     //console.log(input);
@@ -65,28 +55,36 @@ const App = () => {
         changeHandler={changeHandler}
         errorMessage={errorMessage}
         blurHandler={blurHandler}
-        value={input}
+        value={state?.name}
+        name="name"
       />
       <SelectBasic
         colourOptions={colourOptions}
         changeHandler={changeHandler}
         blurHandler={blurHandler}
         errorMessage={errorMessage}
-        value={input}
+        value={state?.city}
+        name="city"
       />
-      <SwitchBasic changeHandler={changeHandler} value={input} />
-      <TextArea changeHandler={changeHandler} value={input} />
+      <SwitchBasic
+        changeHandler={changeHandler}
+        // value={state.switch}
+        name="switch"
+      />
+      {/* <TextArea changeHandler={changeHandler} value={input} />
       <ButtonBasic clickHandler={clickHandler} />
       <ProgressBasic />
       <CheckboxBasic changeHandler={changeHandler} value={input} />
-      <RadioButton />
-      <CommonModal
+      <RadioButton /> */}
+
+      {/* <CommonModal
         changeHandler={changeHandler}
         errorMessage={errorMessage}
         blurHandler={blurHandler}
         value={input}
-      />
-      <Notify/>
+      /> */}
+      <Notify />
+      <TooltipBasic>this is tooltip</TooltipBasic>
     </>
   );
 };

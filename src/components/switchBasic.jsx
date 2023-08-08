@@ -3,7 +3,7 @@ import { Input, Label } from 'reactstrap'
 
 const SwitchBasic = ({
   type = 'switch',
-  name = 'customSwitch',
+  name = 'switch',
   value = false,
   id = 'exampleCustomSwitch',
   disabled = false,
@@ -19,7 +19,7 @@ const SwitchBasic = ({
           value={value}
           id={id}
           disabled={disabled}
-          onChange={changeHandler}
+          onChange={changeHandler(name)}
         />
         <Label for={id} className='form-check-label'>
           Toggle this switch element

@@ -38,7 +38,7 @@ const ModalForm = ({ blurHandler, changeHandler, errorMessage, value }) => {
                     </ModalHeader>
                     <ModalBody>
                         <div className="mb-2">
-                            <InputBasic type='text' blurHandler={blurHandler} changeHandler={changeHandler} value={value} errorMessage={errorMessage} />
+                            <InputBasic type='text' blurHandler={blurHandler} changeHandler={changeHandler} value={value} disabled={true} errorMessage={errorMessage} />
                         </div>
                         <div className="mb-2">
                         <InputBasic type='text' blurHandler={blurHandler} changeHandler={changeHandler} value={value} errorMessage={errorMessage} />
