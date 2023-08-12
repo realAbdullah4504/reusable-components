@@ -10,13 +10,18 @@ import RadioButton from "./components/RadioButton";
 import CommonModal from "./components/CommonModal";
 import Notify from "./components/Notify";
 import TooltipBasic from "./components/TooltipBasic";
+import { FormData } from "./formSettings";
 
 const initialState = {
   name: "",
   city: {},
   switch: false,
+  textBox: "",
+  radio:false,
+  checkBox:false
 };
 const App = () => {
+  console.log(FormData);
   const [state, setState] = useState(initialState);
   const [errorMessage, setErrorMessage] = useState();
 
@@ -25,9 +30,12 @@ const App = () => {
   };
 
   const changeHandler = (name) => (e) => {
-    const value = name==='switch' ?  e?.target?.checked : (e?.target?.value || e);
+    const type = e?.target?.type || "";
+    const value =
+      (type === "checkbox" || type==='radio') ? e?.target?.checked : e?.target?.value || e;
     setState({ ...state, [name]: value });
-    console.log(name, state);
+    //console.log(state);
+    console.log(e)
   };
   const blurHandler = (e) => {
     //console.log(input);
@@ -36,9 +44,9 @@ const App = () => {
     // else setErrorMessage("");
     // console.log(errorMessage);
     // for input basic
-    const { value } = e.target;
-    if (value === "") setErrorMessage("input Should not be empty");
-    else setErrorMessage("");
+    // const { value } = e.target;
+    // if (value === "") setErrorMessage("input Should not be empty");
+    // else setErrorMessage("");
   };
 
   const colourOptions = [
@@ -68,22 +76,38 @@ const App = () => {
       />
       <SwitchBasic
         changeHandler={changeHandler}
-        // value={state.switch}
+        value={state.switch}
         name="switch"
       />
-      {/* <TextArea changeHandler={changeHandler} value={input} />
-      <ButtonBasic clickHandler={clickHandler} />
-      <ProgressBasic />
-      <CheckboxBasic changeHandler={changeHandler} value={input} />
-      <RadioButton /> */}
 
-      {/* <CommonModal
+      <TextArea
+        changeHandler={changeHandler}
+        value={state.textBox}
+        name="textBox"
+      />
+
+      <ButtonBasic clickHandler={clickHandler} />
+
+      <ProgressBasic />
+
+      <CheckboxBasic 
+      changeHandler={changeHandler} 
+      name='checkBox'
+      value={state.checkBox} />
+
+      <RadioButton
+        changeHandler={changeHandler}
+        name="radio"
+        checked={state.radio}
+      />
+
+      <CommonModal
         changeHandler={changeHandler}
         errorMessage={errorMessage}
         blurHandler={blurHandler}
-        value={input}
-      /> */}
-      <Notify />
+        value={state}
+      />
+      <Notify type="error" message="this is error" />
       <TooltipBasic>this is tooltip</TooltipBasic>
     </>
   );

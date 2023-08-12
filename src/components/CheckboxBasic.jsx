@@ -1,7 +1,13 @@
 // ** Reactstrap Imports
 import { Label, Input } from "reactstrap";
 
-const CheckboxBasic = ({ name = 'checkbox', id = 'ex1-active', disabled = false, type = "checkbox", value = false, changeHandler }) => {
+const CheckboxBasic = ({
+    name = 'checkbox',
+    id = 'checkbox',
+    disabled = false, 
+    type = "checkbox", 
+    value = false, 
+    changeHandler }) => {
     return (
         <div className="demo-inline-spacing">
             <div className="form-check form-check-inline">
@@ -9,7 +15,7 @@ const CheckboxBasic = ({ name = 'checkbox', id = 'ex1-active', disabled = false,
                     type={type}
                     disabled={disabled}
                     value={value}
-                    onClick={changeHandler}
+                    onChange={changeHandler(name)}
                     name={name}
                     id={id} />
                 <Label className="form-check-label">Checked Disabled</Label>

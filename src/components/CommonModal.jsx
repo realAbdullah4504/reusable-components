@@ -36,12 +36,13 @@ const ModalForm = ({ blurHandler, changeHandler, errorMessage, value }) => {
                     <ModalHeader toggle={() => setFormModal(!formModal)}>
                         Login Form
                     </ModalHeader>
+
                     <ModalBody>
                         <div className="mb-2">
-                            <InputBasic type='text' blurHandler={blurHandler} changeHandler={changeHandler} value={value} disabled={true} errorMessage={errorMessage} />
+                            <InputBasic type='text' blurHandler={blurHandler} changeHandler={changeHandler} value={value.name} disabled={true} errorMessage={errorMessage} />
                         </div>
                         <div className="mb-2">
-                        <InputBasic type='text' blurHandler={blurHandler} changeHandler={changeHandler} value={value} errorMessage={errorMessage} />
+                        <InputBasic type='password' blurHandler={blurHandler} changeHandler={changeHandler} value={value.name} errorMessage={errorMessage} label='password'/>
                         </div>
                     </ModalBody>
                     <ModalFooter>
