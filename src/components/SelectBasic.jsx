@@ -31,7 +31,7 @@ const SelectBasic = ({
                 isinvalid={true}
                 placeholder='Bruce'
             />
-            {errorMessage && <span className="text-danger">Please select an option.</span>}
+            {/* {errorMessage && <span className="text-danger">Please select an option.</span>} */}
         </>
     )
 }

@@ -26,12 +26,7 @@ const TextArea = ({
         rows={rows}
         style={{ minHeight: '100px' }}
       />
-      <Input
-        id="exampleText"
-        name="text"
-        type="textarea"
-        onChange={(e)=>console.log(e.target)}
-      />
+      
       <Label className='form-label' for={id}>
         Floating Label
       </Label>

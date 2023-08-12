@@ -1,4 +1,4 @@
-import {Input, Label, FormFeedback} from "reactstrap";
+import { Input, Label, FormFeedback } from "reactstrap";
 
 
 const InputBasic = ({
@@ -15,6 +15,7 @@ const InputBasic = ({
     required = false,
     placeholder = 'Enter Name',
 }) => {
+
 
     return (
         <div>

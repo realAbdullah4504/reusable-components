@@ -8,12 +8,11 @@ import {
     ModalHeader,
     ModalBody,
     ModalFooter,
-    Label,
-    Input,
 } from "reactstrap";
 import InputBasic from "./InputBasic";
 
-const ModalForm = ({ blurHandler, changeHandler, errorMessage, value }) => {
+const ModalForm = ({ blurHandler, changeHandler, errorMessage, value,
+    formSetting }) => {
     const [formModal, setFormModal] = useState(false);
 
     return (
@@ -38,12 +37,20 @@ const ModalForm = ({ blurHandler, changeHandler, errorMessage, value }) => {
                     </ModalHeader>
 
                     <ModalBody>
-                        <div className="mb-2">
-                            <InputBasic type='text' blurHandler={blurHandler} changeHandler={changeHandler} value={value.name} disabled={true} errorMessage={errorMessage} />
-                        </div>
-                        <div className="mb-2">
-                        <InputBasic type='password' blurHandler={blurHandler} changeHandler={changeHandler} value={value.name} errorMessage={errorMessage} label='password'/>
-                        </div>
+                        {formSetting.map(form => (
+                            <div key={form?.id} className="mb-2">
+                                <InputBasic
+                                    changeHandler={changeHandler}
+                                    errorMessage={errorMessage[form?.id]}
+                                    blurHandler={blurHandler}
+                                    value={value[form?.name]}
+                                    name={form?.name}
+                                    label={form?.label}
+                                    type={form?.type}
+                                    placeholder={form?.placeHolder}
+                                />
+                            </div>
+                        ))}
                     </ModalBody>
                     <ModalFooter>
                         <Button color="primary" onClick={() => setFormModal(!formModal)}>
