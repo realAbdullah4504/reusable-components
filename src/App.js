@@ -26,7 +26,7 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState();
 
   const clickHandler = () => {
-    alert("iam clicked");
+    alert("iam clicked right");
   };
 
   const changeHandler = (name) => (e) => {
