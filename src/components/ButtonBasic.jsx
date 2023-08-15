@@ -1,11 +1,12 @@
-import { Button } from "reactstrap";
+import { Button} from "reactstrap";
 
 const ButtonBasic = ({
-    text = 'text',
+    // text = 'text',
     color = 'primary',
     size = '',
     clickHandler,
-    disabled=false
+    disabled = false,
+    children
 }) => {
     return (
         <div>
@@ -14,7 +15,7 @@ const ButtonBasic = ({
                 onClick={clickHandler}
                 color={color}
                 size={size}>
-                {text}
+                {children}
             </Button>
         </div>
     )

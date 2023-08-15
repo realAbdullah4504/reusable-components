@@ -14,38 +14,38 @@ const Notify = ({
         toast.error(message);
     };
 
-    const handleAsyncOperation = async () => {
-        try {
-            toast.promise(
-                simulateAsyncOperation(),
-                {
-                    loading: 'Loading...',
-                    success: 'Async operation completed successfully!',
-                    error: 'Oops, something went wrong.',
-                },
-                {
-                    style: {
-                        minWidth: '250px',
-                    },
-                }
-            );
-        } catch (error) {
-            console.error('Async operation error:', error);
-        }
-    }
+    // const handleAsyncOperation = async () => {
+    //     try {
+    //         toast.promise(
+    //             simulateAsyncOperation(),
+    //             {
+    //                 loading: 'Loading...',
+    //                 success: 'Async operation completed successfully!',
+    //                 error: 'Oops, something went wrong.',
+    //             },
+    //             {
+    //                 style: {
+    //                     minWidth: '250px',
+    //                 },
+    //             }
+    //         );
+    //     } catch (error) {
+    //         console.error('Async operation error:', error);
+    //     }
+    // }
 
-    const simulateAsyncOperation = () => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                const randomValue = Math.random();
-                if (randomValue < 0.7) {
-                    resolve(); // Simulate a successful async operation
-                } else {
-                    reject(); // Simulate an error in async operation
-                }
-            }, 2000);
-        });
-    };
+    // const simulateAsyncOperation = () => {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             const randomValue = Math.random();
+    //             if (randomValue < 0.7) {
+    //                 resolve(); // Simulate a successful async operation
+    //             } else {
+    //                 reject(); // Simulate an error in async operation
+    //             }
+    //         }, 2000);
+    //     });
+    // };
 
 
 
@@ -61,12 +61,14 @@ const Notify = ({
     return (
         <div>
             <Toaster position="top-right" />
-            <Button color="primary" onClick={handleAsyncOperation}>
+            {/* <Button color="primary" 
+            // onClick={handleAsyncOperation}
+            >
                 Perform Async Operation
             </Button>
             <Button onClick={type === 'success' ? handleSuccessToast : handleErrorToast}>
                 Show Error Toast
-            </Button>
+            </Button> */}
         </div>
     );
 };

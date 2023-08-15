@@ -6,7 +6,7 @@ const ProgressBasic = ({
     }
 ) => {
   return (
-    <div>
+    <div className='me-4'>
         <Spinner color={color}/>
     </div>
   )
