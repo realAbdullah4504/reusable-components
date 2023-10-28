@@ -18,7 +18,7 @@ const CheckboxBasic = ({
                     onChange={changeHandler(name)}
                     name={name}
                     id={id} />
-                <Label className="form-check-label">Checked Disabled</Label>
+                <Label className="form-check-label">Checked</Label>
             </div>
         </div>
     );

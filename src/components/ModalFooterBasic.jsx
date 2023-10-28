@@ -19,8 +19,6 @@ const ModalFooterBasic = ({
             }{" "}
             <ButtonBasic
                 color="secondary"
-                disabled={disabled}
-                // text='Cancel'
                 clickHandler={clickHandlerCancel}
             >
                 Cancel

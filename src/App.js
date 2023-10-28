@@ -1,28 +1,20 @@
 import { useState } from "react";
-import TextArea from "./components/TextArea";
-// import InputBasic from "./components/InputBasic";
-import SelectBasic from "./components/SelectBasic";
-import SwitchBasic from "./components/SwitchBasic";
-import ButtonBasic from "./components/ButtonBasic";
-import ProgressBasic from "./components/Loading";
-import CheckboxBasic from "./components/CheckboxBasic";
-import RadioButton from "./components/RadioButton";
-import Notify from "./components/Notify";
-import TooltipBasic from "./components/TooltipBasic";
-import { Toaster } from "react-hot-toast";
 import { FormData } from "./formSettings";
-
+import { Toaster, toast } from "react-hot-toast";
 import ModalMain from "./components/ModalMain";
+import { simulateAsyncOperation } from "./utils/helpers/request";
+import { validation } from "./utils/helpers/validation";
+import TooltipBasic from './components/TooltipBasic';
 
 const initialState = {
   firstName: "",
   lastName: "",
   email: "",
   password: "",
-  city: {},
+  select: { value: "", label: "" },
   switch: false,
-  textBox: "",
-  radio: false,
+  // textBox: "",
+  // radio: false,
   checkBox: false,
 };
 
@@ -41,39 +33,65 @@ const App = () => {
   //console.log(form);
 
   const [state, setState] = useState(initialState);
+  const [arrState, setArrState] = useState([]);
   const [errorMessage, setErrorMessage] = useState([]);
+  const [formModal, setFormModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [validate, setValidate] = useState(false);
 
   const changeHandler = (name) => (e) => {
     //change handler for all reusable components
     const type = e?.target?.type || "";
-    console.log(e);
+    // console.log(e);
     const value =
       type === "checkbox" || type === "radio"
         ? e?.target?.checked
         : type === ""
         ? e
         : e?.target?.value;
-
+    // console.log(value);
     setState({ ...state, [name]: value });
     // console.log(state);
     //console.log(e);
   };
-  const blurHandler = (e) => {
-    const { value, name } = e.target;
-    // console.log(e.target.type);
 
+  const handleToast = (type, message) => {
+    toast[type](message);
+  };
+  const clickHandlerCancel = () => {
+    setFormModal(!formModal);
+  };
+  const clickHandlerSubmit = async () => {
+    setIsLoading(true);
+    // setValidate();
+
+    try {
+      const message = await simulateAsyncOperation();
+      setIsLoading(false);
+      handleToast("success", message);
+      setArrState([...arrState, state]);
+      console.log(arrState);
+      clickHandlerCancel(formModal, setFormModal);
+    } catch (error) {
+      setIsLoading(false);
+      handleToast("error", error);
+    }
+  };
+  const blurHandler = (value, name) => () => {
+    // const { value, name } = e.target;
+    // console.log("value", value, "name", name);
     const obj = FormData?.form?.find((data) => data.name === name);
     //console.log(obj);
 
     const test = !obj?.regex?.test(value);
-
+    // console.log(test);
     if (obj?.required) {
-      if (value === "" || test) {
+      if (value === "" || value === undefined || test) {
         const updatedErrors = {
           ...errorMessage,
           [obj?.id]: obj?.errorMessage,
         };
-        console.log(updatedErrors);
+        // console.log(updatedErrors);
         setErrorMessage(updatedErrors);
       } else {
         setErrorMessage({
@@ -87,14 +105,8 @@ const App = () => {
         [obj?.id]: "",
       });
     }
+    // console.log(errorMessage);
   };
-  const colourOptions = [
-    { value: "ocean", label: "Ocean" },
-    { value: "blue", label: "Blue" },
-    { value: "purple", label: "Purple" },
-    { value: "red", label: "Red" },
-    { value: "orange", label: "Orange" },
-  ];
 
   return (
     <>
@@ -105,32 +117,17 @@ const App = () => {
         blurHandler={blurHandler}
         value={state}
         formSetting={FormData.form}
+        isLoading={isLoading}
+        clickHandlerSubmit={clickHandlerSubmit}
+        clickHandlerCancel={clickHandlerCancel}
+        formModal={formModal}
+        buttonDisabled={!validation(state, errorMessage, FormData.form)}
       />
-      {/* <SelectBasic
-        colourOptions={colourOptions}
-        changeHandler={changeHandler}
-        blurHandler={blurHandler}
-        errorMessage={errorMessage}
-        value={state?.city}
-        name="city"
-      /> */}
-      {/* <SwitchBasic
-        changeHandler={changeHandler}
-        value={state.switch}
-        name="switch"
-      /> */}
       {/* <TextArea
         changeHandler={changeHandler}
         value={state.textBox}
         name="textBox"
       /> */}
-      {/* <ButtonBasic clickHandler={clickHandler} /> */}
-      {/* <ProgressBasic /> */}
-      <CheckboxBasic
-        changeHandler={changeHandler}
-        name="checkBox"
-        value={state.checkBox}
-      />
       {/* <RadioButton
         changeHandler={changeHandler}
         name="radio"

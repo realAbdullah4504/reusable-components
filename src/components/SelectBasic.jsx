@@ -1,15 +1,16 @@
 import Select from 'react-select'
-import { Alert  } from 'reactstrap'
+import { Alert } from 'reactstrap'
 
 const SelectBasic = ({
     className = 'react-select',
     colourOptions = '',
-    id='',
+    id = '',
     value = { value: '', label: '' },
-    name = 'sdas',
+    name = 'select',
     changeHandler,
     blurHandler,
-    errorMessage,
+    errorMessage = '',
+    placeholder = 'Select',
     isDisabled = false,
     isLoading = false,
     isClearable = true,
@@ -19,19 +20,19 @@ const SelectBasic = ({
             <Select
                 className={className}
                 classNamePrefix='select'
-                defaultValue={colourOptions[0]}
+                defaultValue={{ value: '', label: '' }}
                 options={colourOptions}
                 isLoading={isLoading}
                 name={name}
-                 value={value}
+                value={value}
                 onChange={changeHandler(name)}
                 onBlur={blurHandler}
                 isClearable={isClearable}
                 isDisabled={isDisabled}
-                isinvalid={true}
-                placeholder='Bruce'
-            />
-            {/* {errorMessage && <span className="text-danger">Please select an option.</span>} */}
+                invalid={errorMessage ? true : false}
+                placeholder={placeholder}
+            />         
+            {errorMessage && <span className="text-danger">{errorMessage}</span>}
         </>
     )
 }
